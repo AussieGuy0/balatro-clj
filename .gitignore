@@ -1,5 +1,6 @@
 .calva/output-window/
 .classpath
+.clj-kondo
 .clj-kondo/.cache
 .cpcache
 .eastwood
@@ -8,6 +9,7 @@
 .hgignore
 .java-version
 .lein-*
+.lsp
 .lsp/.cache
 .lsp/sqlite.db
 .nrepl-history

@@ -1,4 +1,4 @@
-#balatro-clj
+# balatro-clj
 
 A bad recreation of the amazing [Balatro](https://www.playbalatro.com/) video game in Clojure.
 
