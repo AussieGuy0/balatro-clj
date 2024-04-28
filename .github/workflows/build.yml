@@ -27,7 +27,7 @@ jobs:
       - name: Install clojure tools
         uses: DeLaGuardo/setup-clojure@12.5
         with:
-          cli: 1.10.1.693              # Clojure CLI based on tools.deps
+          cli: 1.11.2.1446              # Clojure CLI based on tools.deps
           cmd-exe-workaround: 'latest' # Replaces `clojure` with `deps.clj` on Windows
 
       # Optional step:
