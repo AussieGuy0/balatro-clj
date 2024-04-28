@@ -28,7 +28,6 @@ jobs:
         uses: DeLaGuardo/setup-clojure@12.5
         with:
           cli: 1.11.2.1446              # Clojure CLI based on tools.deps
-          cmd-exe-workaround: 'latest' # Replaces `clojure` with `deps.clj` on Windows
 
       # Optional step:
       - name: Cache clojure dependencies
