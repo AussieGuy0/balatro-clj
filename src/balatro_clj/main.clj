@@ -6,6 +6,10 @@
 (def game-state
   (atom (core/initial-game-state)))
 
+(defn swap-game-state!
+  [f]
+  (swap! game-state f))
+
 (defn cards-to-str
   [hand]
   (map-indexed
@@ -39,15 +43,19 @@
   []
   (println "Welcome to balatro-clj!")
   (swap! game-state core/start-round)
-  (swap! game-state core/sort-hand-by-rank)
-  (print-hand (:hand @game-state))
-  (swap! game-state #(core/select-cards % (parse-card-selection (ask-for-input "Select cards: "))))
-  (print-played-cards (:played-cards @game-state))
-  (swap! game-state #(core/evaluate-played-hand %))
-  (println "score: " (:score @game-state)))
+  (while true
+    (swap-game-state! core/sort-hand-by-rank)
+    (print-hand (:hand @game-state))
+    (swap-game-state! #(core/select-cards % (parse-card-selection (ask-for-input "Select cards: "))))
+    (print-played-cards (:played-cards @game-state))
+    (swap-game-state! core/evaluate-played-hand)
+    (println "" (:last-score-details @game-state))
+    (println "score: " (:score @game-state))
+    (swap-game-state! core/next-round)
+    ;
+    ))
 
 (defn -main
-  "I don't do a whole lot ... yet."
   [& args]
   (run))
 

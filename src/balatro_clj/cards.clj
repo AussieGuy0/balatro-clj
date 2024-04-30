@@ -13,19 +13,6 @@
    13 :king
    14 :ace ; Ace is not technically a face card but shut up.
    })
-
-(defn- create-card
-  "rank 2-10 will be numeral cards. 11-14 will be face cards + ace"
-  [suit value]
-  {:suit suit
-   :rank (cond
-           (< value 2) (throw (Exception. "Rank can not be lower than 2"))
-           (<= value 10) value
-           (<= value 14) (get rank-to-face-card value)
-           :else (throw (Exception. "Rank can not be higher than 14")))
-   :chips (get-chip-value value)
-   :value value})
-
 (defn sort-by-rank
   [cards]
   (sort-by :value > cards))
@@ -52,6 +39,18 @@
    :hearts "♥️"
    :spades "♠️"
    :clubs "♣️"})
+
+(defn- create-card
+  "rank 2-10 will be numeral cards. 11-14 will be face cards + ace"
+  [suit value]
+  {:suit suit
+   :rank (cond
+           (< value 2) (throw (Exception. "Rank can not be lower than 2"))
+           (<= value 10) value
+           (<= value 14) (get rank-to-face-card value)
+           :else (throw (Exception. "Rank can not be higher than 14")))
+   :chips (get-chip-value value)
+   :value value})
 
 (def initial-deck
   "Generates a standard 52 card deck"
